@@ -44,6 +44,14 @@ function refreshChannels() {
 
 const banana = "🍌"
 
+function bananaCount(num: number) {
+    let ret = "";
+    for (let i = 0; i < num; num++) {
+        ret += banana
+    }
+    return ret
+}
+
 client.on('ready', () => {
     console.log("Ready!");
     
@@ -51,6 +59,15 @@ client.on('ready', () => {
     console.log("Channels to send messages to: " + channelsToMessage.map(e => e.name).join(", "));
 
     sendBananas();
+
+    client.user?.setPresence({
+        activities: [
+            {
+                name: bananaCount(100),
+                type: 'WATCHING'
+            }
+        ]
+    })
 
     setInterval(sendBananas, 3600000);
 });
