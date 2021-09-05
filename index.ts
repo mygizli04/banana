@@ -46,7 +46,7 @@ const banana = "🍌"
 
 function bananaCount(num: number) {
     let ret = "";
-    for (let i = 0; i < num; num++) {
+    for (let i = 0; i < num; i++) {
         ret += banana
     }
     return ret
