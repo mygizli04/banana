@@ -73,13 +73,11 @@ client.on('ready', () => {
 });
 
 client.on('guildCreate', guild => {
-    guild.channels.cache.forEach(channel => {
-        if (channel.name.toLowerCase().includes("general")) {
-            if (channel.type === "GUILD_TEXT") {
-                channelsToMessage.push(channel as TextChannel);
-                (channel as TextChannel).send(banana)
-            }
-        }
+    let oldChannels = channelsToMessage.slice()
+    refreshChannels()
+    let newChannels = channelsToMessage.filter(value => !oldChannels.includes(value))
+    newChannels.forEach(channel => {
+        channel.send(banana)
     })
 })
 
